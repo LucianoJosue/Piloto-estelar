@@ -1,0 +1,69 @@
+
+1.sons:
+(game over)
+js
+
+foi adicionado a variaveil:
+const gameOverSound = new Audio('game_over.mp3');
+
+foi adicionado no window.onload:
+ player = document.getElementById('player');
+
+foi adicionado na função game over:
+// ✅ 1. Toca o som de Game Over
+    gameOverSound.pause();
+    gameOverSound.currentTime = 0;
+    gameOverSound.volume = 1.0;
+    gameOverSound.play();
+
+foi adicinado na function setupControls:
+
+if (!gameOverSound._unlocked) {
+            gameOverSound.play().then(() => {
+                gameOverSound.pause();
+                gameOverSound.currentTime = 0;
+                gameOverSound._unlocked = true; // marca como desbloqueado
+                console.log("🔊 Som desbloqueado!");
+            }).catch(err => console.log("Erro ao desbloquear som:", err));
+        }
+
+
+(colisao co meteoro)
+
+declarar variavel
+const meteoroSound = new Audio('meteoro.mp3');
+
+adicionar no começo da function handleMeteoroCollision
+ meteoroSound.pause();
+    meteoroSound.currentTime = 0;
+    meteoroSound.play();
+
+(perder vida)
+declarado a variavel
+const loseLifeSound = new Audio('perder.mp3');
+
+foi adicionado na function loseLife
+ 	loseLifeSound.pause();
+    loseLifeSound.currentTime = 0;
+    loseLifeSound.play();
+
+(salvando o recorde)
+
+declarado a variavel
+let highScore = localStorage.getItem("highScore") || 0;
+
+criar tabela de record no html
+<p id="recorde">Recorde: 0</p>
+
+verificar se bateu o recorde quando game over
+if (score > highScore) {
+        highScore = score;
+        localStorage.setItem("highScore", highScore); // salva no navegador
+        alert("Novo recorde: " + highScore + " pontos!");
+    }
+
+ foi criadoi a função atualizarPlacar
+    { document.getElementById("score").textContent = "Pontos: " + score;
+    document.getElementById("fase").textContent = "Fase: " + fase;
+    document.getElementById("recorde").textContent = "Recorde: " + highScore;
+}
