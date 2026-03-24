@@ -1,5 +1,8 @@
 # 🚀 Piloto Estelar
 
+![Preview do jogo](screenshot.png)
+
+
 Um jogo simples desenvolvido com HTML, CSS e JavaScript, onde o jogador controla uma nave e precisa coletar estrelas enquanto evita meteoros.
 
 ## 🎮 Funcionalidades
