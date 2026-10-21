@@ -17,8 +17,8 @@ Um jogo simples desenvolvido com HTML, CSS e JavaScript, onde o jogador controla
 
 ## 🛠 Tecnologias
 
-- HTML5
-- CSS3
+- HTML
+- CSS
 - JavaScript
 
 ## ▶️ Jogar agora
@@ -27,4 +27,4 @@ https://lucianojosue.github.io/Piloto-estelar/
 
 ## 👨‍💻 Autor
 
-Luciano
+Luciano Josué
