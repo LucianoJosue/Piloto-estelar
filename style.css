@@ -18,8 +18,8 @@ body {
 }
 
 .health-square {
-    width: 15px;
-    height: 15px;
+    width: 7.5px;
+    height: 35px;
     background-color: red;
     border: 1px solid #555;
     transition: background-color 0.2s; /* Adiciona uma transição visual suave */
@@ -50,7 +50,7 @@ body {
 }
 
 #game-container {
-    width: 800px;
+    width: 400px;
     height: 600px;
     position: relative;
     overflow: hidden;
@@ -62,7 +62,7 @@ body {
     top: 20px;
     left: 20px;
     color: white;
-    font-size: 24px;
+    font-size: 18px;
     z-index: 10;
 }
 
@@ -71,7 +71,7 @@ body {
     top: 50px;
     left: 20px;
     color: white;
-    font-size: 24px;
+    font-size: 18px;
     z-index: 10;
 }
 
@@ -105,12 +105,21 @@ body {
    background-repeat: no-repeat;
 }
 
+.vida {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: url("saude.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 #recorde {
     position: absolute;
     top: 80px;   /* abaixo do level */
     left: 20px;
     color: white;
-    font-size: 24px;
+    font-size: 18px;
     z-index: 10;
 }
 
@@ -126,6 +135,18 @@ body {
 }
 #restart-btn:hover {
     background-color: #45a049;
+}
+#game-container {
+    background-image:
+    linear-gradient(
+        rgba(0,0,15,0.25),
+        rgba(0,0,15,0.25)
+    ),
+    url("espaço.jpeg");
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 
