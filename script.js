@@ -3,18 +3,18 @@ let score = 0;
 let highScore = localStorage.getItem("highScore") || 0;
 let playerX = 0;
 let nivel = 1;
-let speed = 5;               // velocidade dos objetos (pixels por frame)
+let speed = 3;               // velocidade dos objetos (pixels por frame)
 let gameContainer;
 let gameInterval;
 let stars = [];
-const playerSpeed = 100;     // pixels por movimento
+const playerSpeed = 50;     // pixels por movimento
 const pointsPerLevel = 10;   // pontos necessários para subir 1 nível
 const speedIncrement = 1.0;
 let isPlayerDisabled = false;
 const disableDuration = 4000;
-let vidas = 12;
+let vidas = 6;
 let healthBar;
-const maxVidas = 12;
+const maxVidas = 6;
 const gameOverSound = new Audio('game_over.mp3');
 const meteoroSound = new Audio('explosao.mp3');
 const loseLifeSound = new Audio('perder.mp3');
@@ -41,13 +41,13 @@ window.onload = function() {
 
 
     // Inicia o loop do jogo
-    gameInterval = setInterval(gameLoop, 50); // 20 FPS
+    gameInterval = setInterval(gameLoop, 35); // 20 FPS
 
-    // Cria estrelas a cada 1.5 segundos
-    setInterval(createStar, 1500);
+    // Cria estrelas a cada 2.5 segundos
+    setInterval(createStar, 2500);
 
-    // cria meteoros a cada 3.5 segundos
-    setInterval(createMeteoro, 3500);
+    // cria meteoros a cada 4.5 segundos
+    setInterval(createMeteoro, 4500);
 
     // cria vida a cada 30 segundos
     this.setInterval(createvida, 30000);
@@ -97,6 +97,21 @@ function loseLife() {
     // 3. Verifica Game Over
     if (vidas <= 0) {
         gameOver();
+    }
+}
+
+function recoverLife() {
+    if (vidas >= maxVidas) return; // Evita ultrapassar o máximo
+    
+    //recupera uma vida
+    vidas++;
+
+    //restaura quadrado correrspondente
+    const squareToRestore = document.getElementById(`hp-${vidas - 1}`);
+
+    if (squareToRestore) {
+        squareToRestore.style.backgroundColor = 'red';
+        squareToRestore.style.borderColor = 'red';
     }
 }
 
@@ -195,6 +210,21 @@ function createMeteoro() {
     stars.push(meteoro);
 }
 
+function createvida() {
+    const vida = document.createElement('div');
+    vida.classList.add('vida');
+
+    // Posição horizontal aleatória
+    const randomX = Math.random() * (gameContainer.clientWidth - 30);
+    vida.style.left = randomX + 'px';
+
+    // começa acima da tela
+    vida.style.top = '-40px';
+
+    gameContainer.appendChild(vida);
+    stars.push(vida);
+}
+
 function gameLoop() {
     // Verifica colisões
     const playerRect = player.getBoundingClientRect();
@@ -232,6 +262,8 @@ function gameLoop() {
 
             if (star.classList.contains('meteoro') || star.classList.contains('meteoro')) {
                 handleMeteoroCollision();
+            } else if (star.classList.contains('vida')) {
+                recoverLife();
             } else {
                 // É uma estrela
                 score++;
@@ -282,7 +314,7 @@ function restartGame() {
     // 1. Reseta variáveis
     score = 0;
     nivel = 1;
-    speed = 5;
+    speed = 3;
     vidas = maxVidas;
     isPlayerDisabled = false;
 
@@ -305,7 +337,7 @@ function restartGame() {
 
     // 7. Reinicia o loop do jogo
     clearInterval(gameInterval);
-    gameInterval = setInterval(gameLoop, 50);
+    gameInterval = setInterval(gameLoop, 35);
 }
 
 document.getElementById('restart-btn').addEventListener('click', restartGame);
